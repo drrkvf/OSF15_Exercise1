@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include <limits.h> //UINT_MAX
 
 #include <fcntl.h>
 #include <sys/types.h>
@@ -33,7 +34,9 @@ void load_matrix (Matrix_t* m, unsigned int* data);
 bool create_matrix (Matrix_t** new_matrix, const char* name, const unsigned int rows,
 						const unsigned int cols) {
 
-	//TODO ERROR CHECK INCOMING PARAMETERS
+	if(rows<=0 || cols<= 0 || rows > UINT_MAX || cols > UINT_MAX){
+		return false;
+	}
 
 	*new_matrix = calloc(1,sizeof(Matrix_t));
 	if (!(*new_matrix)) {
@@ -65,7 +68,10 @@ bool create_matrix (Matrix_t** new_matrix, const char* name, const unsigned int 
 
 void destroy_matrix (Matrix_t** m) {
 
-	//TODO ERROR CHECK INCOMING PARAMETERS
+	if(m == NULL){
+		return;
+	}
+	
 	
 	free((*m)->data);
 	free(*m);
@@ -85,7 +91,9 @@ void destroy_matrix (Matrix_t** m) {
  **/
 bool equal_matrices (Matrix_t* a, Matrix_t* b) {
 
-	//TODO ERROR CHECK INCOMING PARAMETERS
+	if (a == NULL || b == NULL){
+		return false;
+	}
 	
 	if (!a || !b || !a->data || !b->data) {
 		return false;	
@@ -110,7 +118,9 @@ bool equal_matrices (Matrix_t* a, Matrix_t* b) {
 bool duplicate_matrix (Matrix_t* src, Matrix_t* dest) {
 
 
-	//TODO ERROR CHECK INCOMING PARAMETERS
+	if (src == NULL || dest == NULL){
+		return false;
+	}
 
 	if (!src) {
 		return false;
@@ -134,7 +144,10 @@ bool duplicate_matrix (Matrix_t* src, Matrix_t* dest) {
  **/
 bool bitwise_shift_matrix (Matrix_t* a, char direction, unsigned int shift) {
 	
-	//TODO ERROR CHECK INCOMING PARAMETERS
+	if (a == NULL || direction != 'l' && direction != 'r' || shift <= 0 || shift > UINT_MAX){
+		return false;
+	}
+
 	if (!a) {
 		return false;
 	}
@@ -162,10 +175,21 @@ bool bitwise_shift_matrix (Matrix_t* a, char direction, unsigned int shift) {
 	return true;
 }
 
-	//TODO FUNCTION COMMENT
+/* 
+ * PURPOSE: This fuction adds two matrices and sets their values equal to a third matrice
+ * INPUTS: 
+ *  a = A pointer to the first matrix that the user wants to add
+ *  b = A pointer to the second matrix that the user wants to add
+ *	c = A pointer to the matrix which will hold the sum of the matrices a & b
+ * RETURN: 
+ *  False - If the matrices could not be added
+ *	True - If the matrices were succesfully added
+ **/
 bool add_matrices (Matrix_t* a, Matrix_t* b, Matrix_t* c) {
 
-	//TODO ERROR CHECK INCOMING PARAMETERS
+	if (a == NULL || b == NULL || c = NULL){
+		return false;
+	}
 
 	if (a->rows != b->rows && a->cols != b->cols) {
 		return false;
@@ -179,10 +203,20 @@ bool add_matrices (Matrix_t* a, Matrix_t* b, Matrix_t* c) {
 	return true;
 }
 
-	//TODO FUNCTION COMMENT
+/* 
+ * PURPOSE: This fuction will display the matrix that is passed to it using printf
+ * INPUTS: 
+ *  m = A pointer which points to the matrix to be displayed
+ * RETURN:
+ *  Nothing is returned
+ *
+ **/
+
 void display_matrix (Matrix_t* m) {
 	
-	//TODO ERROR CHECK INCOMING PARAMETERS
+	if (m == NULL){
+		return;
+	}
 
 
 	printf("\nMatrix Contents (%s):\n", m->name);
@@ -197,10 +231,19 @@ void display_matrix (Matrix_t* m) {
 
 }
 
-	//TODO FUNCTION COMMENT
+/* 
+ * PURPOSE: This fuction adds two matrices and sets their values equal to a third matrice
+ * INPUTS: 
+ *  a = A pointer to the first matrix that the user wants to add
+ *  b = A pointer to the second matrix that the user wants to add
+ *	c = A pointer to the matrix which will hold the sum of the matrices a & b
+ * RETURN: 
+ *  False - If the matrices could not be added
+ *	True - If the matrices were succesfully added
+ **/
 bool read_matrix (const char* matrix_input_filename, Matrix_t** m) {
 	
-	//TODO ERROR CHECK INCOMING PARAMETERS
+	if (//error check)
 
 
 	int fd = open(matrix_input_filename,O_RDONLY);
