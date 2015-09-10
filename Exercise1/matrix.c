@@ -54,7 +54,14 @@ bool create_matrix (Matrix_t** new_matrix, const char* name, const unsigned int 
 
 }
 
-	//TODO FUNCTION COMMENT
+/* 
+ * PURPOSE: This fuction fress the matrix at the pointer that is passed in
+ * INPUTS: 
+ *  m = A pointer which points to the matrix to be freed
+ * RETURN:
+ *  Nothing is returned
+ *
+ **/
 
 void destroy_matrix (Matrix_t** m) {
 
@@ -67,7 +74,14 @@ void destroy_matrix (Matrix_t** m) {
 
 
 	
-	//TODO FUNCTION COMMENT
+/* 
+ * PURPOSE: This fuction compares two matrices to see if they are equal
+ * INPUTS: 
+ *  a = A pointer which points to the matrix to be freed
+ * RETURN:
+ *  Nothing is returned
+ *
+ **/
 bool equal_matrices (Matrix_t* a, Matrix_t* b) {
 
 	//TODO ERROR CHECK INCOMING PARAMETERS
@@ -96,7 +110,7 @@ bool duplicate_matrix (Matrix_t* src, Matrix_t* dest) {
 	 * copy over data
 	 */
 	unsigned int bytesToCopy = sizeof(unsigned int) * src->rows * src->cols;
-	memcpy(dest->data,src->data, bytesToCopy);	
+	memcpy(src->data,dest->data, bytesToCopy);	
 	return equal_matrices (src,dest);
 }
 
