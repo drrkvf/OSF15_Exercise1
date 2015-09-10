@@ -77,10 +77,11 @@ void destroy_matrix (Matrix_t** m) {
 /* 
  * PURPOSE: This fuction compares two matrices to see if they are equal
  * INPUTS: 
- *  a = A pointer which points to the matrix to be freed
+ *  a = A pointer which points to the first matrix to be compared  
+ *	b = A pointer which points to the second matrix to be compared
  * RETURN:
- *  Nothing is returned
- *
+ *  true - If the matrices are equal
+ *	false - If the matrices are not equal
  **/
 bool equal_matrices (Matrix_t* a, Matrix_t* b) {
 
@@ -97,7 +98,15 @@ bool equal_matrices (Matrix_t* a, Matrix_t* b) {
 	return false;
 }
 
-	//TODO FUNCTION COMMENT
+/* 
+ * PURPOSE: This fuction duplicates a matrix onto a second matrix
+ * INPUTS: 
+ *  src =  A pointer to a matrix that you want to duplicate
+ *	dest = A pointer which points to the matix that you want src to be duplicated on
+ * RETURN: 
+ *  False - If the matrices were not duplicated
+ *	True - If the matrices were succesfully duplicated
+ **/
 bool duplicate_matrix (Matrix_t* src, Matrix_t* dest) {
 
 
@@ -114,7 +123,15 @@ bool duplicate_matrix (Matrix_t* src, Matrix_t* dest) {
 	return equal_matrices (src,dest);
 }
 
-	//TODO FUNCTION COMMENT
+/* 
+ * PURPOSE: This fuction compares two matrices to see if they are equal
+ * INPUTS: 
+ *  src =  A pointer to a matrix that you want to duplicate
+ *	dest = A pointer which points to the matix that you want src to be duplicated on
+ * RETURN: 
+ *  False - If the matrices were not duplicated
+ *	True - If the matrices were succesfully duplicated
+ **/
 bool bitwise_shift_matrix (Matrix_t* a, char direction, unsigned int shift) {
 	
 	//TODO ERROR CHECK INCOMING PARAMETERS
