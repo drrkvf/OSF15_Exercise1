@@ -299,10 +299,14 @@ void destroy_remaining_heap_allocations(Matrix_t **mats, unsigned int num_mats) 
 		return;
 	}
 
+	Matrix_t* temp = NULL;
 	while(num_mats > 0){
-		Matrix_t* temp = *mats;
+		temp = *mats;
 		mats++;
+		if (temp != NULL){
+		free(temp->data);
 		free(temp);
+		}
 		num_mats--;
 	}
 }
