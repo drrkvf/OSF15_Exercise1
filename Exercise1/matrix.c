@@ -441,10 +441,21 @@ bool write_matrix (const char* matrix_output_filename, Matrix_t* m) {
 	return true;
 }
 
-	//TODO FUNCTION COMMENT
+/* 
+ * PURPOSE: This fuction inserts random numbers into a matrix between a min and a max
+ * INPUTS: 
+ *  m = A pointer to the matrix that the user wants to fill with random numbers
+ *	start_range = The minimum value that can be input into the matrix
+ *	end_range = The maximum value that can be input into the matrix
+ * RETURN: 
+ *  False - If the matrix was not filled with data
+ *	True - If the matrix was filled with data
+ **/
 bool random_matrix(Matrix_t* m, unsigned int start_range, unsigned int end_range) {
 	
-	//TODO ERROR CHECK INCOMING PARAMETERS
+	if (m == NULL || start_range <= 0 || start_range > UINT_MAX || end_range <= 0 || end_range > UINT_MAX){
+		return false;
+	}
 
 	for (unsigned int i = 0; i < m->rows; ++i) {
 		for (unsigned int j = 0; j < m->cols; ++j) {
@@ -459,7 +470,10 @@ bool random_matrix(Matrix_t* m, unsigned int start_range, unsigned int end_range
 	//TODO FUNCTION COMMENT
 void load_matrix (Matrix_t* m, unsigned int* data) {
 	
-	//TODO ERROR CHECK INCOMING PARAMETERS
+	if (m == NULL || *data <0 || *data == UINT_MAX){
+		return;
+	}
+	
 	memcpy(m->data,data,m->rows * m->cols * sizeof(unsigned int));
 }
 
