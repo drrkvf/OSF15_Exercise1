@@ -35,6 +35,7 @@ bool create_matrix (Matrix_t** new_matrix, const char* name, const unsigned int 
 						const unsigned int cols) {
 
 	if(rows<=0 || cols<= 0 || rows > UINT_MAX || cols > UINT_MAX){
+		printf("Error: Invalid Input\n");
 		return false;
 	}
 
@@ -69,6 +70,7 @@ bool create_matrix (Matrix_t** new_matrix, const char* name, const unsigned int 
 void destroy_matrix (Matrix_t** m) {
 
 	if(m == NULL){
+		printf("Error: NULL pointer\n");
 		return;
 	}
 	
@@ -92,6 +94,7 @@ void destroy_matrix (Matrix_t** m) {
 bool equal_matrices (Matrix_t* a, Matrix_t* b) {
 
 	if (a == NULL || b == NULL){
+		printf("Error: Null pointer\n");
 		return false;
 	}
 	
@@ -119,6 +122,7 @@ bool duplicate_matrix (Matrix_t* src, Matrix_t* dest) {
 
 
 	if (src == NULL || dest == NULL){
+		printf("Error: Null pointer\n");
 		return false;
 	}
 
@@ -145,6 +149,7 @@ bool duplicate_matrix (Matrix_t* src, Matrix_t* dest) {
 bool bitwise_shift_matrix (Matrix_t* a, char direction, unsigned int shift) {
 	
 	if (a == NULL || direction != 'l' && direction != 'r' || shift <= 0 || shift > UINT_MAX){
+		printf("Error: Invalid Input\n");
 		return false;
 	}
 
@@ -188,6 +193,7 @@ bool bitwise_shift_matrix (Matrix_t* a, char direction, unsigned int shift) {
 bool add_matrices (Matrix_t* a, Matrix_t* b, Matrix_t* c) {
 
 	if (a == NULL || b == NULL || c = NULL){
+		printf("Error: Null pointer\n");
 		return false;
 	}
 
@@ -215,6 +221,7 @@ bool add_matrices (Matrix_t* a, Matrix_t* b, Matrix_t* c) {
 void display_matrix (Matrix_t* m) {
 	
 	if (m == NULL){
+		printf("Error: Null pointer\n");
 		return;
 	}
 
@@ -232,18 +239,20 @@ void display_matrix (Matrix_t* m) {
 }
 
 /* 
- * PURPOSE: This fuction adds two matrices and sets their values equal to a third matrice
+ * PURPOSE: This fuction reads in a matrix from a file and places it in matrix m
  * INPUTS: 
- *  a = A pointer to the first matrix that the user wants to add
- *  b = A pointer to the second matrix that the user wants to add
- *	c = A pointer to the matrix which will hold the sum of the matrices a & b
+ *  matrix_input_filename = A pointer to the file to read in the input
+ *  m = A pointer to the matrix to be filled with data
  * RETURN: 
- *  False - If the matrices could not be added
- *	True - If the matrices were succesfully added
+ *  False - If the matrices could not be read and stored
+ *	True - If the matrices were succesfully read and stored
  **/
 bool read_matrix (const char* matrix_input_filename, Matrix_t** m) {
 	
-	if (//error check)
+	if (matrix_input_filename == NULL || m == NULL){
+		printf("Error: Null pointer\n");
+		return false;
+	}
 
 
 	int fd = open(matrix_input_filename,O_RDONLY);
@@ -373,10 +382,22 @@ bool read_matrix (const char* matrix_input_filename, Matrix_t** m) {
 	return true;
 }
 
-	//TODO FUNCTION COMMENT
+/* 
+ * PURPOSE: This fuction puts data from the matrix into an output file
+ * INPUTS: 
+ *  matrix_output_filename = A pointer to the file to write the matrix into
+ *  m = A pointer to the matrix to be written into the output file
+ * RETURN: 
+ *  False - If the matrices could not be written into the file
+ *	True - If the matrices were succesfully written into the file
+ **/
 bool write_matrix (const char* matrix_output_filename, Matrix_t* m) {
 	
-	//TODO ERROR CHECK INCOMING PARAMETERS
+	if (matrix_input_filename == NULL || m == NULL){
+		printf("Error: Null pointer\n");
+		return false;
+	}
+
 
 	int fd = open (matrix_output_filename, O_CREAT | O_RDWR | O_TRUNC, 0644);
 	/* ERROR HANDLING USING errorno*/
@@ -454,6 +475,7 @@ bool write_matrix (const char* matrix_output_filename, Matrix_t* m) {
 bool random_matrix(Matrix_t* m, unsigned int start_range, unsigned int end_range) {
 	
 	if (m == NULL || start_range <= 0 || start_range > UINT_MAX || end_range <= 0 || end_range > UINT_MAX){
+		printf("Error: Invalid Input\n");
 		return false;
 	}
 
@@ -467,20 +489,39 @@ bool random_matrix(Matrix_t* m, unsigned int start_range, unsigned int end_range
 
 /*Protected Functions in C*/
 
-	//TODO FUNCTION COMMENT
+/* 
+ * PURPOSE: This fuction loads data into the matrix m
+ * INPUTS: 
+ *  m = A pointer to the matrix that the user wants to fill with random numbers
+ *	data = data to be loaded into the matrix m
+ * RETURN: 
+ **/
 void load_matrix (Matrix_t* m, unsigned int* data) {
 	
 	if (m == NULL || *data <0 || *data == UINT_MAX){
+		printf("Error: Invalid Input\n");
 		return;
 	}
-	
+
 	memcpy(m->data,data,m->rows * m->cols * sizeof(unsigned int));
 }
 
-	//TODO FUNCTION COMMENT
+/* 
+ * PURPOSE: This fuction adds new_matrix to an array of matrices named mats 
+ * INPUTS: 
+ *  mats = This is the array of matrices
+ *	new_matrix = This is the matrix to be added to the array
+ *	num_mats = The number of matrices in the array mats
+ * RETURN: 
+ *  -1 - If the matrix was not added to the array
+ *	pos - If the matrix was added to the array
+ **/
 unsigned int add_matrix_to_array (Matrix_t** mats, Matrix_t* new_matrix, unsigned int num_mats) {
 	
-	//TODO ERROR CHECK INCOMING PARAMETERS
+	if (m == NULL || new_matrix == NULL || num_mats < 0 || num_mats > UINT_MAX){
+		printf("Error: Invalid Input\n");
+		return -1;
+	}
 	static long int current_position = 0;
 	const long int pos = current_position % num_mats;
 	if ( mats[pos] ) {
