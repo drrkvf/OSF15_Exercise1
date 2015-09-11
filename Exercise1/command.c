@@ -22,7 +22,7 @@
 bool parse_user_input (const char* input, Commands_t** cmd) {
 	
 	if (input == NULL || cmd == NULL){
-		printf("Error: Invalid Input\n");
+		printf("Error: Null Pointer\n");
 		return false;
 	}
 
@@ -58,7 +58,7 @@ bool parse_user_input (const char* input, Commands_t** cmd) {
 void destroy_commands(Commands_t** cmd) {
 
 	if (cmd == NULL){
-		printf("Error: Invalid Input\n");
+		printf("Error: Null pointer\n");
 		return;
 	}
 	
