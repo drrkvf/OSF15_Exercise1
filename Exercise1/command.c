@@ -9,10 +9,22 @@
 #define MAX_CMD_LEN 25
 
 
-	//TODO FUNCTION COMMENT
+/* 
+ * PURPOSE: Parses the user input so that it can be used and finds the command
+ * INPUTS: 
+ *	input - Point to the user input to be ran
+ *	cmd - double pointer to the command to be ran later 
+ * RETURN:
+ *  true - If the command was found and set to be ran
+ *  false - If the command could not be found or if the input is invalid
+ *
+ **/
 bool parse_user_input (const char* input, Commands_t** cmd) {
 	
-	//TODO ERROR CHECK INCOMING PARAMETERS
+	if (input == NULL || cmd == NULL){
+		printf("Error: Invalid Input\n");
+		return false;
+	}
 
 	char *string = strdup(input);
 	
@@ -36,10 +48,19 @@ bool parse_user_input (const char* input, Commands_t** cmd) {
 	return true;
 }
 
-	//TODO FUNCTION COMMENT
+/* 
+ * PURPOSE: Frees the commands that were used in the running of the program
+ * INPUTS: 
+ *	cmd - double pointer to the commands that were used
+ * RETURN:
+ *
+ **/
 void destroy_commands(Commands_t** cmd) {
 
-	//TODO ERROR CHECK INCOMING PARAMETERS
+	if (cmd == NULL){
+		printf("Error: Invalid Input\n");
+		return;
+	}
 	
 	for (int i = 0; i < (*cmd)->num_cmds; ++i) {
 		free((*cmd)->cmds[i]);
