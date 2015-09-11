@@ -148,7 +148,7 @@ bool duplicate_matrix (Matrix_t* src, Matrix_t* dest) {
  **/
 bool bitwise_shift_matrix (Matrix_t* a, char direction, unsigned int shift) {
 	
-	if (a == NULL || direction != 'l' && direction != 'r' || shift <= 0 || shift > UINT_MAX){
+	if (a == NULL || (direction != 'l' && direction != 'r') || shift <= 0 || shift > UINT_MAX){
 		printf("Error: Invalid Input\n");
 		return false;
 	}
@@ -192,7 +192,7 @@ bool bitwise_shift_matrix (Matrix_t* a, char direction, unsigned int shift) {
  **/
 bool add_matrices (Matrix_t* a, Matrix_t* b, Matrix_t* c) {
 
-	if (a == NULL || b == NULL || c = NULL){
+	if (a == NULL || b == NULL || c == NULL){
 		printf("Error: Null pointer\n");
 		return false;
 	}
@@ -393,7 +393,7 @@ bool read_matrix (const char* matrix_input_filename, Matrix_t** m) {
  **/
 bool write_matrix (const char* matrix_output_filename, Matrix_t* m) {
 	
-	if (matrix_input_filename == NULL || m == NULL){
+	if (matrix_output_filename == NULL || m == NULL){
 		printf("Error: Null pointer\n");
 		return false;
 	}
@@ -498,7 +498,7 @@ bool random_matrix(Matrix_t* m, unsigned int start_range, unsigned int end_range
  **/
 void load_matrix (Matrix_t* m, unsigned int* data) {
 	
-	if (m == NULL || *data <0 || *data == UINT_MAX){
+	if (m == NULL || *data < 1 || *data == UINT_MAX){
 		printf("Error: Invalid Input\n");
 		return;
 	}
@@ -518,7 +518,7 @@ void load_matrix (Matrix_t* m, unsigned int* data) {
  **/
 unsigned int add_matrix_to_array (Matrix_t** mats, Matrix_t* new_matrix, unsigned int num_mats) {
 	
-	if (m == NULL || new_matrix == NULL || num_mats < 0 || num_mats > UINT_MAX){
+	if (mats == NULL || new_matrix == NULL || num_mats <= 0 || num_mats > UINT_MAX){
 		printf("Error: Invalid Input\n");
 		return -1;
 	}
